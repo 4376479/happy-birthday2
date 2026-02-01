@@ -2,13 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ميلاد سعيد رندا | الروح الجميلة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ميلاد سعيد رندا</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --primary: #d4af37; /* ذهبي */
-            --bg: #0f172a; /* كحلي ليلي */
+            --primary: #d4af37;
+            --bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -20,10 +25,11 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            /* منع التمرير المزعج في الموبايل */
+            overflow: hidden; 
+            padding: 20px;
         }
 
-        /* نجوم متحركة في الخلفية */
         #stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -35,29 +41,30 @@
             z-index: 10;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 40px;
+            -webkit-backdrop-filter: blur(20px);
+            padding: 30px 20px;
+            border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            max-width: 450px;
-            width: 85%;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-            animation: fadeIn 1.5s ease-out;
+            width: 100%;
+            max-width: 400px; /* عرض مناسب جداً للهواتف */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            animation: fadeIn 1.2s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .profile-frame {
-            width: 190px;
-            height: 190px;
-            margin: 0 auto 25px;
+            width: 150px; /* حجم أصغر ليناسب الموبايل */
+            height: 150px;
+            margin: 0 auto 20px;
             border-radius: 50%;
-            padding: 6px;
+            padding: 5px;
             background: linear-gradient(45deg, #d4af37, #f9d423, #ff4e50);
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
         }
 
         .profile-frame img {
@@ -69,22 +76,28 @@
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 2.5rem; /* حجم خط متناسق مع الجوال */
             margin: 0;
             background: linear-gradient(to bottom, #f9d423, #ff4e50);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: bold;
         }
 
         .message {
-            font-size: 1.25rem;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            line-height: 1.6;
             color: #e2e8f0;
-            margin-top: 20px;
+            margin-top: 15px;
+            word-wrap: break-word;
         }
 
-        .highlight { color: var(--primary); font-weight: bold; }
+        .highlight { 
+            color: var(--primary); 
+            font-weight: bold; 
+            display: block;
+            margin-top: 10px;
+            font-size: 1.3rem;
+        }
     </style>
 </head>
 <body>
@@ -96,33 +109,32 @@
             <img src="https://i.ibb.co/YBmgxF78/e28b4653bc079d7357de3f98df3ace98.jpg" alt="رندا">
         </div>
         <h1>رنـــــدا</h1>
-        <p class="message">
+        <div class="message">
             كل عام وأنتِ تزدادين تألقاً ونوراً.. <br>
-            بمناسبة عيد ميلادكِ، أتمنى لكِ عاماً مليئاً <br>
-            بالسعادة والنجاح الذي يشبه طموحكِ. <br>
+            بمناسبة عيد ميلادكِ، أتمنى لكِ عاماً <br>
+            مليئاً بالسعادة والنجاح.
             <span class="highlight">عيد ميلاد سعيد! 🎉</span>
-        </p>
+        </div>
     </div>
 
     <script>
-        // إطلاق الاحتفال عند التحميل
         window.onload = () => {
-            const end = Date.now() + (10 * 1000);
+            const end = Date.now() + (8 * 1000);
             const colors = ['#d4af37', '#ffffff', '#ff4e50'];
 
             (function frame() {
                 confetti({
-                    particleCount: 4,
+                    particleCount: 3,
                     angle: 60,
-                    spread: 60,
-                    origin: { x: 0, y: 0.65 },
+                    spread: 55,
+                    origin: { x: 0, y: 0.8 },
                     colors: colors
                 });
                 confetti({
-                    particleCount: 4,
+                    particleCount: 3,
                     angle: 120,
-                    spread: 60,
-                    origin: { x: 1, y: 0.65 },
+                    spread: 55,
+                    origin: { x: 1, y: 0.8 },
                     colors: colors
                 });
 
@@ -132,29 +144,33 @@
             }());
         };
 
-        // رسم النجوم
+        // أنيميشن النجوم
         const canvas = document.getElementById('stars');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.onresize = resize;
+        resize();
 
-        const stars = Array(200).fill().map(() => ({
+        const stars = Array(100).fill().map(() => ({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 1.8,
-            speed: Math.random() * 0.4
+            size: Math.random() * 1.5,
+            speed: Math.random() * 0.3
         }));
 
-        function animateStars() {
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "white";
             stars.forEach(s => {
                 ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctx.fill();
                 s.y -= s.speed; if (s.y < 0) s.y = canvas.height;
             });
-            requestAnimationFrame(animateStars);
+            requestAnimationFrame(animate);
         }
-        animateStars();
+        animate();
     </script>
 </body>
 </html>
